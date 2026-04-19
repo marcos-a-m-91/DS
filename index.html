@@ -92,9 +92,10 @@
   <section id="hero"
     class="min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 pt-24 pb-16 relative overflow-hidden">
 
-    <!-- Background Canvas (Image Sequence) -->
-    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
-      style="opacity: 0.85;"></canvas>
+    <!-- Background Video -->
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-60">
+      <source src="assets/video/Gerar_um_video_202604171619.mp4" type="video/mp4">
+    </video>
 
     <!-- Gradient Overlays for Readability and Blending -->
     <div class="absolute inset-0 bg-gradient-to-b from-[#080810]/40 via-[#080810]/60 to-[#080810] z-[1]"></div>
@@ -613,70 +614,15 @@
   <script>
     // Page-specific unique logic for landing page
     window.addEventListener('load', () => {
-          ease: "power3.out",
-          delay: 0.8, // start after elements reveal
-          onUpdate: () => {
-            counter.innerText = Math.floor(obj.val).toLocaleString('pt-BR');
-          },
-          onComplete: () => {
-            if (autoIncrement) {
-              setInterval(() => {
-                const currentVal = Math.floor(obj.val);
-                gsap.to(obj, {
-                  val: currentVal + 1,
-                  duration: 0.5,
-                  ease: "power2.out",
-                  onUpdate: () => counter.innerText = Math.floor(obj.val).toLocaleString('pt-BR')
-                });
-              }, 10000); // 10 seconds
-            }
-          }
-        });
+      // 1. Initial Hero Stagger reveal
+      gsap.to('#hero .reveal', {
+        opacity: 1, y: 0, duration: 1, 
+        stagger: 0.12, delay: 0.2, ease: "power3.out" 
       });
 
-      // Image Sequence / Canvas Object-Fit Trick
-      const canvas = document.getElementById("hero-canvas");
-      if (canvas) {
-        const context = canvas.getContext("2d", { alpha: false }); // alpha: false for performance if opaque background
-        const frameCount = 192; // Extracted 192 frames via python script
-        const currentFrame = index => `templates/hero-frames/frame_${String(index).padStart(4, '0')}.webp`;
-        const images = [];
-        const imageSeq = { frame: 0 };
+      // 2. Initialize Counters
+      document.querySelectorAll('.counter').forEach(c => window.initCounter(c));
 
-        // Load all frames into memory
-        for (let i = 0; i < frameCount; i++) {
-          const img = new Image();
-          if (i === 0) {
-            // Setup canvas size from first frame
-            img.onload = () => {
-              canvas.width = img.width;
-              canvas.height = img.height;
-              context.drawImage(img, 0, 0);
-            };
-          }
-          img.src = currentFrame(i);
-          images.push(img);
-        }
-
-        // GSAP scrub logic for drawing images
-        // Using a slightly longer trigger range specifically for the visual sequence
-        ScrollTrigger.create({
-          trigger: "#hero",
-          start: "top top",
-          end: "+=120%", // Keep scrolling active a bit lower
-          scrub: 0.5,     // 0.5 is silky smooth 
-          animation: gsap.to(imageSeq, {
-            frame: frameCount - 1,
-            snap: "frame",
-            ease: "none",
-            onUpdate: () => {
-              if (images[imageSeq.frame] && images[imageSeq.frame].complete) {
-                context.drawImage(images[imageSeq.frame], 0, 0);
-              }
-            }
-          })
-        });
-      }
     });
   </script>
 
