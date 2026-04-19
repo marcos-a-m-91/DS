@@ -27,6 +27,7 @@ window.initCounter = function(el) {
       },
       onComplete: () => {
         if (autoIncrement) {
+          const intervalMs = el.hasAttribute('data-interval') ? +el.getAttribute('data-interval') : 10000;
           setInterval(() => {
             const currentVal = Math.floor(obj.val);
             gsap.to(obj, {
@@ -35,7 +36,7 @@ window.initCounter = function(el) {
               ease: "power2.out",
               onUpdate: () => el.innerText = Math.floor(obj.val).toLocaleString('pt-BR')
             });
-          }, 10000);
+          }, intervalMs);
         }
       }
     });
