@@ -35,11 +35,11 @@ sobre_body = """
         </p>
         
         <div class="flex flex-wrap gap-4 justify-center lg:justify-start reveal">
-          <a href="#" class="btn-primary" onclick="createRipple(event)">
+          <a href="https://www.linkedin.com/in/marcos-a-m-m" target="_blank" class="btn-primary" onclick="createRipple(event)">
             <i data-lucide="linkedin" class="w-5 h-5 text-[#0A66C2]"></i>
             LinkedIn
           </a>
-          <a href="#" class="btn-secondary">
+          <a href="https://github.com/marcos-a-m-91/Site-Marcos-Data-Product" target="_blank" class="btn-secondary">
             <i data-lucide="github" class="w-5 h-5"></i>
             GitHub
           </a>
