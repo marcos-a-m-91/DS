@@ -1,0 +1,25 @@
+<svg viewBox="0 0 256 180" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- Cubo central -->
+    <path d="M128 70 L168 90 L128 110 L88 90 Z"></path>
+    <path d="M88 90 L128 110 L128 150 L88 130 Z"></path>
+    <path d="M128 110 L168 90 L168 130 L128 150 Z"></path>
+
+    <!-- Cubo esquerda -->
+    <path d="M48 90 L88 110 L48 130 L8 110 Z"></path>
+    <path d="M8 110 L48 130 L48 160 L8 140 Z"></path>
+    <path d="M48 130 L88 110 L88 140 L48 160 Z"></path>
+
+    <!-- Cubo direita -->
+    <path d="M208 90 L248 110 L208 130 L168 110 Z"></path>
+    <path d="M168 110 L208 130 L208 160 L168 140 Z"></path>
+    <path d="M208 130 L248 110 L248 140 L208 160 Z"></path>
+
+    <!-- Cubo topo -->
+    <path d="M128 20 L168 40 L128 60 L88 40 Z"></path>
+    <path d="M88 40 L128 60 L128 90 L88 70 Z"></path>
+    <path d="M128 60 L168 40 L168 70 L128 90 Z"></path>
+
+  </g>
+</svg>

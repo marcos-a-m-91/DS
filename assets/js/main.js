@@ -121,4 +121,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 6. Auto-highlight active navigation link
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    
+    document.querySelectorAll('.nav-link, .mobile-link').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('http')) return;
+        
+        if (href === currentPath) {
+            link.classList.add('active', 'text-white');
+        } else {
+            link.classList.remove('active', 'text-white');
+        }
+    });
 });

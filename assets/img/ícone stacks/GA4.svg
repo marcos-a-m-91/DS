@@ -1,0 +1,14 @@
+<svg viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Círculo -->
+    <circle cx="30" cy="90" r="20"></circle>
+
+    <!-- Barra média -->
+    <rect x="70" y="40" width="40" height="80" rx="20"></rect>
+
+    <!-- Barra alta -->
+    <rect x="130" y="10" width="40" height="110" rx="20"></rect>
+
+  </g>
+</svg>

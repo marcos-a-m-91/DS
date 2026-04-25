@@ -1,0 +1,35 @@
+<svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- ===== BASE ===== -->
+    <polygon points="20,140 120,110 220,140 120,170"></polygon>
+    <polygon points="20,140 120,170 120,200 20,170"></polygon>
+    <polygon points="120,170 220,140 220,170 120,200"></polygon>
+
+    <!-- ===== BARRA 1 ===== -->
+    <polygon points="40,110 55,105 70,110 55,115"></polygon>
+    <polygon points="55,115 70,110 70,135 55,140"></polygon>
+    <polygon points="40,110 55,115 55,140 40,135"></polygon>
+
+    <!-- ===== BARRA 2 ===== -->
+    <polygon points="70,100 90,95 110,100 90,105"></polygon>
+    <polygon points="90,105 110,100 110,145 90,150"></polygon>
+    <polygon points="70,100 90,105 90,150 70,145"></polygon>
+
+    <!-- ===== BARRA 3 (mais alta) ===== -->
+    <polygon points="110,85 135,78 160,85 135,92"></polygon>
+    <polygon points="135,92 160,85 160,155 135,162"></polygon>
+    <polygon points="110,85 135,92 135,162 110,155"></polygon>
+
+    <!-- ===== BARRA 4 ===== -->
+    <polygon points="150,100 170,95 190,100 170,105"></polygon>
+    <polygon points="170,105 190,100 190,145 170,150"></polygon>
+    <polygon points="150,100 170,105 170,150 150,145"></polygon>
+
+    <!-- ===== BARRA 5 ===== -->
+    <polygon points="180,90 200,85 220,90 200,95"></polygon>
+    <polygon points="200,95 220,90 220,150 200,155"></polygon>
+    <polygon points="180,90 200,95 200,155 180,150"></polygon>
+
+  </g>
+</svg>

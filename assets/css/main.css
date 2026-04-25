@@ -283,11 +283,11 @@ section {
 .nav-link {
   position: relative;
   color: rgba(255, 255, 255, 0.5);
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   transition: color 0.25s;
   text-decoration: none;
-  padding: 0.25rem 0;
+  padding: 0.5rem 0;
 }
 
 .nav-link::after {
@@ -303,11 +303,13 @@ section {
   transform: translateX(-50%);
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
   color: white;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
 

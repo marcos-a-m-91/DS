@@ -1,0 +1,10 @@
+<svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round">
+
+    <polygon points="0,80 25,10 45,10 45,80"></polygon>
+    <rect x="45" y="10" width="20" height="70"></rect>
+    <rect x="65" y="30" width="20" height="50"></rect>
+    <rect x="85" y="50" width="20" height="30"></rect>
+
+  </g>
+</svg>

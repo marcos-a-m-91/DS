@@ -1,0 +1,43 @@
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+
+    <!-- Contorno principal (forma contínua tipo "S") -->
+    <path d="
+      M96 32
+      H144
+      C184 32 208 56 208 96
+      V104
+      C208 144 184 168 144 168
+      H120
+      C96 168 88 176 88 192
+      V200
+
+      M160 224
+      H112
+      C72 224 48 200 48 160
+      V152
+      C48 112 72 88 112 88
+      H136
+      C160 88 168 80 168 64
+      V56
+    "></path>
+
+    <!-- Laterais arredondadas (corpo esquerdo e direito) -->
+    <path d="
+      M96 32
+      C64 32 48 48 48 80
+      V104
+    "></path>
+
+    <path d="
+      M160 224
+      C192 224 208 208 208 176
+      V152
+    "></path>
+
+    <!-- Olhos -->
+    <circle cx="112" cy="64" r="8"></circle>
+    <circle cx="144" cy="192" r="8"></circle>
+
+  </g>
+</svg>
