@@ -137,4 +137,26 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.remove('active', 'text-white');
         }
     });
+
+    // 7. Hub Deck - Expanding cards interaction (Mobile touch support)
+    const hubDeck = document.getElementById('hub-deck');
+    if (hubDeck) {
+        const cards = hubDeck.querySelectorAll('.hub-card');
+        
+        cards.forEach(card => {
+            // On mobile / touch device: tap to expand first, second tap or button click navigates
+            card.addEventListener('click', (e) => {
+                if (window.innerWidth < 768) {
+                    if (!card.classList.contains('active')) {
+                        const clickedBtn = e.target.closest('.hub-btn');
+                        if (!clickedBtn) {
+                            e.preventDefault();
+                            cards.forEach(c => c.classList.remove('active'));
+                            card.classList.add('active');
+                        }
+                    }
+                }
+            });
+        });
+    }
 });

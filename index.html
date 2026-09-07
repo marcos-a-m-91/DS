@@ -206,223 +206,222 @@
 
 
   <!-- ═══════════════════════════════════════════════════════
-     SECTIONS — Navigation cards
+     EXPLORE — Interactive Expanding Cards Hub
 ═══════════════════════════════════════════════════════ -->
+  <section id="explorar" class="relative px-5 sm:px-8 py-16 sm:py-24 overflow-hidden">
+    <!-- Anchor targets for backwards-compatibility with deep links -->
+    <span id="blog" class="absolute -top-24"></span>
+    <span id="materiais" class="absolute -top-24"></span>
+    <span id="projetos" class="absolute -top-24"></span>
+    <span id="biblioteca" class="absolute -top-24"></span>
+    <span id="sobre" class="absolute -top-24"></span>
 
-  <!-- ── BLOG ──────────────────────────────────────── -->
-  <section id="blog" class="relative px-5 sm:px-8 py-10 sm:py-16 overflow-hidden">
-    <div class="section-glow w-[400px] h-[400px] bg-blue-500" style="top:10%;right:-10%;"></div>
-
-    <div class="max-w-7xl mx-auto">
-      <a href="#" class="section-card reveal">
-        <div class="grid md:grid-cols-2 gap-0">
-
-          <!-- Visual side -->
-          <div class="relative p-8 sm:p-10 md:p-12 flex items-center justify-center overflow-hidden order-1 md:order-2"
-            style="min-height:220px;">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/8 to-transparent"></div>
-            <div class="relative z-10 flex flex-col items-center gap-4">
-              <div
-                class="card-icon-wrap w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-blue-500/15 flex items-center justify-center border border-blue-400/15">
-                <i data-lucide="pen-tool" class="w-7 h-7 sm:w-9 sm:h-9 text-blue-400"></i>
-              </div>
-              <!-- Mini visual: fake article lines -->
-              <div class="w-full max-w-[200px] space-y-2 mt-2">
-                <div class="h-1.5 rounded-full bg-white/8 w-full"></div>
-                <div class="h-1.5 rounded-full bg-white/6 w-4/5"></div>
-                <div class="h-1.5 rounded-full bg-white/4 w-3/5"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Content side -->
-          <div class="p-8 sm:p-10 md:p-12 flex flex-col justify-center order-2 md:order-1">
-            <span class="badge badge-blue w-max mb-4">Artigos</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Blog</h2>
-            <p class="text-sm sm:text-base text-white/40 leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
-              Artigos técnicos sobre IA, machine learning, engenharia de dados e automação — com código, exemplos
-              práticos e reflexões do dia a dia.
-            </p>
-            <div class="flex items-center gap-2 text-sm font-medium text-blue-400">
-              <span>Ver os posts</span>
-              <svg class="card-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-  </section>
-
-
-  <!-- ── MATERIAIS ─────────────────────────────────── -->
-  <section id="materiais" class="relative px-5 sm:px-8 py-10 sm:py-16 overflow-hidden">
-    <div class="section-glow w-[400px] h-[400px] bg-amber-500" style="bottom:10%;left:-10%;opacity:0.1;"></div>
+    <!-- Ambient background glows -->
+    <div class="section-glow w-[500px] h-[500px] bg-blue-500/10" style="top:5%;left:-10%;"></div>
+    <div class="section-glow w-[500px] h-[500px] bg-emerald-500/10" style="bottom:5%;right:-10%;"></div>
 
     <div class="max-w-7xl mx-auto">
-      <a href="#" class="section-card reveal">
-        <div class="grid md:grid-cols-2 gap-0">
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 reveal">
+        <span class="badge badge-blue mb-4">Navegação Integrada</span>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+          Explore por <span class="gradient-text">Áreas</span>
+        </h2>
+        <p class="text-sm sm:text-base md:text-lg text-white/50 leading-relaxed font-sans" style="font-family:'Manrope',sans-serif">
+          Passe o mouse sobre os blocos para conferir os detalhes e acessar diretamente cada frente de trabalho.
+        </p>
+      </div>
 
-          <!-- Visual side -->
-          <div class="relative p-8 sm:p-10 md:p-12 flex items-center justify-center overflow-hidden order-1 md:order-2"
-            style="min-height:220px;">
-            <div class="absolute inset-0 bg-gradient-to-bl from-amber-500/8 to-transparent"></div>
-            <div class="relative z-10 flex flex-col items-center gap-4">
-              <div
-                class="card-icon-wrap w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-amber-500/15 flex items-center justify-center border border-amber-400/15">
-                <i data-lucide="download" class="w-7 h-7 sm:w-9 sm:h-9 text-amber-400"></i>
+      <!-- Hub Deck of Expanding Cards -->
+      <div class="hub-deck reveal" id="hub-deck">
+
+        <!-- ── 01. BLOG ─────────────────────────────────── -->
+        <a href="https://marcosdp.notion.site/marcos-data-product" target="_blank" rel="noopener noreferrer"
+           class="hub-card hub-card-blue group" data-index="0" aria-label="Acessar Blog">
+          <div class="hub-card-line"></div>
+          <div class="hub-card-glow"></div>
+
+          <!-- Top header -->
+          <div class="hub-card-header">
+            <div class="hub-card-icon">
+              <i data-lucide="pen-tool" class="w-6 h-6"></i>
+            </div>
+          </div>
+
+          <div class="hub-card-spacer"></div>
+
+          <!-- Body & expandable content -->
+          <div class="hub-card-body">
+            <div>
+              <span class="badge badge-blue mb-2">Artigos</span>
+              <h3 class="hub-card-title">Blog</h3>
+            </div>
+
+            <div class="hub-card-details">
+              <div class="hub-card-details-inner">
+                <p class="hub-card-desc">
+                  Artigos técnicos sobre IA, machine learning, engenharia de dados e automação — com código, exemplos práticos e reflexões do dia a dia.
+                </p>
+                <div class="hub-card-action">
+                  <span class="hub-btn">
+                    <span>Acessar Blog</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
+        </a>
 
-          <!-- Content side -->
-          <div class="p-8 sm:p-10 md:p-12 flex flex-col justify-center order-2 md:order-1">
-            <span class="badge badge-amber w-max mb-4">Downloads</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Materiais</h2>
-            <p class="text-sm sm:text-base text-white/40 leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
-              E-books, guias práticos, templates e frameworks focados em extrair valor real dos dados e implementar automações eficientes.
-            </p>
-            <div class="flex items-center gap-2 text-sm font-medium text-amber-400">
-              <span>Baixar materiais</span>
-              <svg class="card-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
+        <!-- ── 02. MATERIAIS ───────────────────────────── -->
+        <a href="materiais.html" class="hub-card hub-card-amber group" data-index="1" aria-label="Baixar Materiais">
+          <div class="hub-card-line"></div>
+          <div class="hub-card-glow"></div>
+
+          <!-- Top header -->
+          <div class="hub-card-header">
+            <div class="hub-card-icon">
+              <i data-lucide="download" class="w-6 h-6"></i>
             </div>
           </div>
-        </div>
-      </a>
-    </div>
-  </section>
 
+          <div class="hub-card-spacer"></div>
 
-  <!-- ── PROJETOS ──────────────────────────────────── -->
-  <section id="projetos" class="relative px-5 sm:px-8 py-10 sm:py-16 overflow-hidden">
-    <div class="section-glow w-[450px] h-[450px] bg-emerald-500" style="top:5%;right:-12%;opacity:0.1;"></div>
+          <!-- Body & expandable content -->
+          <div class="hub-card-body">
+            <div>
+              <span class="badge badge-amber mb-2">Downloads</span>
+              <h3 class="hub-card-title">Materiais</h3>
+            </div>
 
-    <div class="max-w-7xl mx-auto">
-      <a href="#" class="section-card reveal">
-        <div class="grid md:grid-cols-2 gap-0">
-
-          <!-- Visual side -->
-          <div class="relative p-8 sm:p-10 md:p-12 flex items-center justify-center overflow-hidden order-1 md:order-2"
-            style="min-height:260px;">
-            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/8 to-transparent"></div>
-            <div class="relative z-10 flex flex-col items-center gap-4 w-full">
-              <div
-                class="card-icon-wrap w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-emerald-500/15 flex items-center justify-center border border-emerald-400/15">
-                <i data-lucide="layers" class="w-7 h-7 sm:w-9 sm:h-9 text-emerald-400"></i>
+            <div class="hub-card-details">
+              <div class="hub-card-details-inner">
+                <p class="hub-card-desc">
+                  E-books, guias práticos, templates e frameworks focados em extrair valor real dos dados e implementar automações eficientes.
+                </p>
+                <div class="hub-card-action">
+                  <span class="hub-btn">
+                    <span>Baixar Materiais</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </span>
+                </div>
               </div>
+            </div>
+          </div>
+        </a>
 
+        <!-- ── 03. PROJETOS ────────────────────────────── -->
+        <a href="projetos.html" class="hub-card hub-card-emerald group" data-index="2" aria-label="Explorar Projetos">
+          <div class="hub-card-line"></div>
+          <div class="hub-card-glow"></div>
+
+          <!-- Top header -->
+          <div class="hub-card-header">
+            <div class="hub-card-icon">
+              <i data-lucide="layers" class="w-6 h-6"></i>
             </div>
           </div>
 
-          <!-- Content side -->
-          <div class="p-8 sm:p-10 md:p-12 flex flex-col justify-center order-2 md:order-1">
-            <span class="badge badge-emerald w-max mb-4">Portfólio</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Projetos</h2>
-            <p class="text-sm sm:text-base text-white/40 leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
-              Cases reais de IA aplicada, automação de processos e produtos de dados — com resultados mensuráveis e
-              detalhes técnicos de implementação.
-            </p>
-            <div class="flex items-center gap-2 text-sm font-medium text-emerald-400">
-              <span>Explorar projetos</span>
-              <svg class="card-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
+          <div class="hub-card-spacer"></div>
+
+          <!-- Body & expandable content -->
+          <div class="hub-card-body">
+            <div>
+              <span class="badge badge-emerald mb-2">Portfólio</span>
+              <h3 class="hub-card-title">Projetos</h3>
             </div>
-          </div>
-        </div>
-      </a>
-    </div>
-  </section>
 
-
-  <!-- ── BIBLIOTECA ────────────────────────────────── -->
-  <section id="biblioteca" class="relative px-5 sm:px-8 py-10 sm:py-16 overflow-hidden">
-    <div class="section-glow w-96 h-96 bg-purple-500" style="bottom:10%;left:-8%;opacity:0.1;"></div>
-
-    <div class="max-w-7xl mx-auto">
-      <a href="#" class="section-card reveal">
-        <div class="grid md:grid-cols-2 gap-0">
-
-          <!-- Content side (reversed) -->
-          <div class="p-8 sm:p-10 md:p-12 flex flex-col justify-center order-2 md:order-1">
-            <span class="badge badge-purple w-max mb-4">Curadoria</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Biblioteca</h2>
-            <p class="text-sm sm:text-base text-white/40 leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
-              Curadoria pessoal de livros, papers, ferramentas e recursos selecionados sobre ciência de dados, IA e
-              produto — tudo que vale a pena guardar.
-            </p>
-            <div class="flex items-center gap-2 text-sm font-medium text-purple-400">
-              <span>Navegar biblioteca</span>
-              <svg class="card-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Visual side -->
-          <div class="relative p-8 sm:p-10 md:p-12 flex items-center justify-center overflow-hidden order-1 md:order-2"
-            style="min-height:220px;">
-            <div class="absolute inset-0 bg-gradient-to-bl from-purple-500/8 to-transparent"></div>
-            <div class="relative z-10 flex flex-col items-center gap-4">
-              <div
-                class="card-icon-wrap w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-purple-500/15 flex items-center justify-center border border-purple-400/15">
-                <i data-lucide="book-open" class="w-7 h-7 sm:w-9 sm:h-9 text-purple-400"></i>
+            <div class="hub-card-details">
+              <div class="hub-card-details-inner">
+                <p class="hub-card-desc">
+                  Cases reais de IA aplicada, automação de processos e produtos de dados — com resultados mensuráveis e detalhes técnicos de implementação.
+                </p>
+                <div class="hub-card-action">
+                  <span class="hub-btn">
+                    <span>Explorar Projetos</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </span>
+                </div>
               </div>
-
             </div>
           </div>
-        </div>
-      </a>
-    </div>
-  </section>
+        </a>
 
+        <!-- ── 04. BIBLIOTECA ──────────────────────────── -->
+        <a href="biblioteca.html" class="hub-card hub-card-purple group" data-index="3" aria-label="Navegar Biblioteca">
+          <div class="hub-card-line"></div>
+          <div class="hub-card-glow"></div>
 
-  <!-- ── SOBRE ─────────────────────────────────────── -->
-  <section id="sobre" class="relative px-5 sm:px-8 py-10 sm:py-16 overflow-hidden">
-    <div class="section-glow w-96 h-96 bg-pink-500" style="top:10%;right:-5%;opacity:0.1;"></div>
+          <!-- Top header -->
+          <div class="hub-card-header">
+            <div class="hub-card-icon">
+              <i data-lucide="book-open" class="w-6 h-6"></i>
+            </div>
+          </div>
 
-    <div class="max-w-7xl mx-auto">
-      <a href="#" class="section-card reveal">
-        <div class="grid md:grid-cols-2 gap-0">
+          <div class="hub-card-spacer"></div>
 
-          <!-- Visual side -->
-          <div class="relative p-8 sm:p-10 md:p-12 flex items-center justify-center overflow-hidden order-1 md:order-2"
-            style="min-height:220px;">
-            <div class="absolute inset-0 bg-gradient-to-br from-pink-500/8 to-transparent"></div>
-            <div class="relative z-10 flex flex-col items-center gap-4">
-              <div
-                class="card-icon-wrap w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-pink-500/15 flex items-center justify-center border border-pink-400/15">
-                <i data-lucide="user" class="w-7 h-7 sm:w-9 sm:h-9 text-pink-400"></i>
+          <!-- Body & expandable content -->
+          <div class="hub-card-body">
+            <div>
+              <span class="badge badge-purple mb-2">Curadoria</span>
+              <h3 class="hub-card-title">Biblioteca</h3>
+            </div>
+
+            <div class="hub-card-details">
+              <div class="hub-card-details-inner">
+                <p class="hub-card-desc">
+                  Curadoria pessoal de livros, papers, ferramentas e recursos selecionados sobre ciência de dados, IA e produto — tudo que vale a pena guardar.
+                </p>
+                <div class="hub-card-action">
+                  <span class="hub-btn">
+                    <span>Navegar Biblioteca</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </span>
+                </div>
               </div>
+            </div>
+          </div>
+        </a>
 
+        <!-- ── 05. SOBRE ───────────────────────────────── -->
+        <a href="sobre.html" class="hub-card hub-card-pink group" data-index="4" aria-label="Conhecer Minha História">
+          <div class="hub-card-line"></div>
+          <div class="hub-card-glow"></div>
+
+          <!-- Top header -->
+          <div class="hub-card-header">
+            <div class="hub-card-icon">
+              <i data-lucide="user" class="w-6 h-6"></i>
             </div>
           </div>
 
-          <!-- Content side -->
-          <div class="p-8 sm:p-10 md:p-12 flex flex-col justify-center order-2 md:order-1">
-            <span class="badge badge-pink w-max mb-4">Quem sou</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">Sobre</h2>
-            <p class="text-sm sm:text-base text-white/40 leading-relaxed mb-6" style="font-family:'Manrope',sans-serif">
-              Conheça minha trajetória, habilidades e visão. De engenharia de dados a IA generativa — o que me move é
-              resolver problemas reais com tecnologia.
-            </p>
-            <div class="flex items-center gap-2 text-sm font-medium text-pink-400">
-              <span>Saiba mais</span>
-              <svg class="card-arrow w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
+          <div class="hub-card-spacer"></div>
+
+          <!-- Body & expandable content -->
+          <div class="hub-card-body">
+            <div>
+              <span class="badge badge-pink mb-2">Quem sou</span>
+              <h3 class="hub-card-title">Sobre</h3>
+            </div>
+
+            <div class="hub-card-details">
+              <div class="hub-card-details-inner">
+                <p class="hub-card-desc">
+                  Conheça minha trajetória, habilidades e visão. De engenharia de dados a IA generativa — o que me move é resolver problemas reais com tecnologia.
+                </p>
+                <div class="hub-card-action">
+                  <span class="hub-btn">
+                    <span>Conhecer Trajetória</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
+
+      </div>
     </div>
   </section>
 

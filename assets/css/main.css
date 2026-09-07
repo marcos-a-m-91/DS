@@ -341,7 +341,7 @@ section {
   transform: translateY(-1px);
 }
 
-/* ── Section Card ────────────────────────────── */
+/* ── Section Card (Legacy) ───────────────────── */
 .section-card {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -369,6 +369,311 @@ section {
 .card-icon-wrap { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 .card-arrow { opacity: 0.4; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
 .card-visual { transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* ── Hub Deck (Interactive Expanding Cards) ────────── */
+.hub-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .hub-deck {
+    flex-direction: row;
+    height: 520px;
+    align-items: stretch;
+  }
+}
+
+.hub-card {
+  --card-accent: #60a5fa;
+  --card-accent-rgb: 96, 165, 250;
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.75rem 1.4rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: flex 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.4s ease,
+              border-color 0.4s ease,
+              box-shadow 0.4s ease,
+              transform 0.4s ease,
+              opacity 0.4s ease;
+  min-width: 0;
+}
+
+/* Card color variants */
+.hub-card-blue {
+  --card-accent: #60a5fa;
+  --card-accent-rgb: 96, 165, 250;
+}
+.hub-card-amber {
+  --card-accent: #fbbf24;
+  --card-accent-rgb: 251, 191, 36;
+}
+.hub-card-emerald {
+  --card-accent: #34d399;
+  --card-accent-rgb: 52, 211, 153;
+}
+.hub-card-purple {
+  --card-accent: #a78bfa;
+  --card-accent-rgb: 167, 139, 250;
+}
+.hub-card-pink {
+  --card-accent: #f472b6;
+  --card-accent-rgb: 244, 114, 182;
+}
+
+/* Ambient glow inside card */
+.hub-card-glow {
+  position: absolute;
+  top: -20%;
+  right: -20%;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--card-accent-rgb), 0.35) 0%, transparent 70%);
+  filter: blur(40px);
+  opacity: 0.12;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+/* Top bar accent line */
+.hub-card-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(var(--card-accent-rgb), 0.7), transparent);
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+}
+
+/* Desktop sizing & hover expansion */
+@media (min-width: 768px) {
+  .hub-card {
+    flex: 1;
+  }
+
+  /* When the deck is hovered, shrink cards not being hovered */
+  .hub-deck:hover .hub-card {
+    flex: 0.85;
+    opacity: 0.7;
+    transform: translateY(0);
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: none;
+  }
+
+  /* The card being hovered expands dynamically */
+  .hub-deck .hub-card:hover {
+    flex: 3.8;
+    opacity: 1;
+    border-color: rgba(var(--card-accent-rgb), 0.45);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 35px rgba(var(--card-accent-rgb), 0.18);
+    transform: translateY(-4px);
+  }
+}
+
+/* Card hover inner effects */
+.hub-card:hover .hub-card-glow {
+  opacity: 0.35;
+  transform: scale(1.25);
+}
+
+.hub-card:hover .hub-card-line {
+  opacity: 1;
+}
+
+/* Card Header (Icon) */
+.hub-card-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.hub-card-icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 1rem;
+  background: rgba(var(--card-accent-rgb), 0.12);
+  border: 1px solid rgba(var(--card-accent-rgb), 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--card-accent);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hub-card:hover .hub-card-icon {
+  transform: scale(1.08);
+  background: rgba(var(--card-accent-rgb), 0.2);
+  box-shadow: 0 0 20px rgba(var(--card-accent-rgb), 0.3);
+}
+
+/* Card Spacer (Expands dynamically on hover to push body down) */
+.hub-card-spacer {
+  min-height: 1.25rem;
+  height: 1.25rem;
+  flex-grow: 0;
+  transition: flex-grow 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hub-card:hover .hub-card-spacer {
+  flex-grow: 1;
+}
+
+@media (max-width: 767px) {
+  .hub-card.active .hub-card-spacer {
+    flex-grow: 1;
+  }
+}
+
+/* Card Body / Titles */
+.hub-card-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.hub-card-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-top: 0.35rem;
+  margin-bottom: 0.25rem;
+  transition: font-size 0.35s ease, color 0.3s ease;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .hub-card:hover .hub-card-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Expandable details area */
+.hub-card-details {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(12px);
+  overflow: hidden;
+  pointer-events: none;
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease,
+              transform 0.35s ease;
+}
+
+.hub-card-details-inner {
+  padding-top: 0.85rem;
+  max-width: 440px;
+}
+
+@media (min-width: 768px) {
+  .hub-card-details-inner {
+    min-width: 280px;
+  }
+}
+
+/* Reveal details on hover or when active on mobile */
+.hub-card:hover .hub-card-details {
+  max-height: 280px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.45s 0.12s ease,
+              transform 0.45s 0.12s ease;
+}
+
+/* On mobile: .active opens details */
+@media (max-width: 767px) {
+  .hub-card.active .hub-card-details {
+    max-height: 280px;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .hub-card.active {
+    border-color: rgba(var(--card-accent-rgb), 0.45);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(var(--card-accent-rgb), 0.15);
+  }
+  .hub-card.active .hub-card-glow {
+    opacity: 0.35;
+  }
+}
+
+.hub-card-desc {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .hub-card-desc {
+    font-size: 0.925rem;
+  }
+}
+
+/* Action Button inside card */
+.hub-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 9999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(var(--card-accent-rgb), 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(var(--card-accent-rgb), 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  width: max-content;
+}
+
+.hub-card:hover .hub-btn {
+  background: rgba(var(--card-accent-rgb), 0.25);
+  border-color: rgba(var(--card-accent-rgb), 0.65);
+  box-shadow: 0 0 25px rgba(var(--card-accent-rgb), 0.35), 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.hub-btn:hover {
+  background: rgba(var(--card-accent-rgb), 0.35);
+  border-color: rgba(var(--card-accent-rgb), 0.85);
+}
+
+.hub-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.hub-card:hover .hub-btn svg {
+  transform: translateX(4px);
+}
 
 /* ── Badge ────────────────────────────────────── */
 .badge {
