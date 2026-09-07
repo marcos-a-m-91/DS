@@ -129,8 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const href = link.getAttribute('href');
         if (!href || href.startsWith('http')) return;
         
-        if (href === currentPath) {
-            link.classList.add('active', 'text-white');
+        const cleanHref = href.split('#')[0].split('?')[0];
+        if (cleanHref === currentPath || (currentPath === '' && cleanHref === 'index.html')) {
+            link.classList.add('active');
+            link.classList.remove('text-white');
         } else {
             link.classList.remove('active', 'text-white');
         }
