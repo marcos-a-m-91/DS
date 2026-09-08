@@ -637,19 +637,6 @@
     ScrollTrigger.create({ trigger: "body", start: "top top", end: "bottom bottom", scrub: true, onUpdate: s => { scrollP = s.progress; } });
     document.addEventListener('mousemove', e => { mX = (e.clientX / innerWidth) * 2 - 1; mY = -(e.clientY / innerHeight) * 2 + 1; });
 
-    /* ── GSAP reveals ──────────────────────────────── */
-    document.querySelectorAll('.reveal').forEach(el => {
-      ScrollTrigger.create({
-        trigger: el, start: "top 88%",
-        onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }),
-        onLeaveBack: () => gsap.to(el, { opacity: 0, y: 32, duration: 0.45 })
-      });
-    });
-
-    /* ── Nav scroll effect ─────────────────────────── */
-    const navbar = document.getElementById('navbar');
-    ScrollTrigger.create({ start: "top+=50 top", onEnter: () => navbar.classList.add('scrolled'), onLeaveBack: () => navbar.classList.remove('scrolled') });
-
     /* ── Animate loop ──────────────────────────────── */
     function animate() {
       requestAnimationFrame(animate);
@@ -673,7 +660,7 @@
   <script src="assets/js/main.js"></script>
   <script>
     // ── Apple-Style Image Sequence Scrubbing ────────────────────
-    // Uses a pre-rendered image sequence for 100% fluid performance
+    // Uses progressive non-blocking batch loading for fluid performance
     (function initImageScrub() {
       const canvas = document.getElementById('hero-canvas');
       if (!canvas || !window.gsap || !window.ScrollTrigger) return;
@@ -681,9 +668,7 @@
       const ctx = canvas.getContext('2d');
       const frameCount = 192;
       const currentFrameInfo = { frame: 0 };
-      const images = [];
-      const imagesToLoad = frameCount;
-      let loadedImages = 0;
+      const images = new Array(frameCount);
 
       // Prepare URLs (frame_0000.webp to frame_0191.webp)
       const currentFrame = index => `assets/img/hero-frames/frame_${String(index).padStart(4, '0')}.webp`;
@@ -697,16 +682,28 @@
       }
       window.addEventListener('resize', resizeCanvas);
 
-      // Draw image with object-fit: cover logic
+      // Draw image with object-fit: cover logic and nearest-frame fallback
       function renderFrame(index) {
-        if (!images[index] || !images[index].complete) return;
-        const img = images[index];
-        const ctx = canvas.getContext("2d");
+        let targetImg = images[index];
+        if (!targetImg || !targetImg.complete) {
+          // Find closest loaded frame to avoid flicker during fast scroll
+          for (let d = 1; d < frameCount; d++) {
+            if (index - d >= 0 && images[index - d] && images[index - d].complete) {
+              targetImg = images[index - d];
+              break;
+            }
+            if (index + d < frameCount && images[index + d] && images[index + d].complete) {
+              targetImg = images[index + d];
+              break;
+            }
+          }
+        }
+        if (!targetImg || !targetImg.complete) return;
+
         const cw = canvas.width;
         const ch = canvas.height;
-        const iw = img.width;
-        const ih = img.height;
-
+        const iw = targetImg.width;
+        const ih = targetImg.height;
         if (!iw || !ih) return;
 
         const scale = Math.max(cw / iw, ch / ih);
@@ -714,24 +711,41 @@
         const dy = (ch - ih * scale) / 2;
 
         ctx.clearRect(0, 0, cw, ch);
-        ctx.drawImage(img, dx, dy, iw * scale, ih * scale);
+        ctx.drawImage(targetImg, dx, dy, iw * scale, ih * scale);
       }
 
-      // Preload images
-      for (let i = 0; i < frameCount; i++) {
-        const img = new Image();
-        img.src = currentFrame(i);
-        images.push(img);
-        
-        // Render first frame immediately once loaded
-        if (i === 0) {
-          img.onload = () => {
-            loadedImages++;
-            resizeCanvas();
-          };
-        } else {
-          img.onload = () => loadedImages++;
+      // 1. Load first frame immediately
+      const firstImg = new Image();
+      firstImg.src = currentFrame(0);
+      images[0] = firstImg;
+      firstImg.onload = () => {
+        resizeCanvas();
+        renderFrame(0);
+        loadRemainingFrames();
+      };
+
+      // 2. Load remaining frames in progressive idle batches to prevent network congestion
+      function loadRemainingFrames() {
+        let current = 1;
+        function loadBatch() {
+          const batchLimit = Math.min(current + 8, frameCount);
+          for (let i = current; i < batchLimit; i++) {
+            if (!images[i]) {
+              const img = new Image();
+              img.src = currentFrame(i);
+              images[i] = img;
+            }
+          }
+          current = batchLimit;
+          if (current < frameCount) {
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(loadBatch, { timeout: 150 });
+            } else {
+              setTimeout(loadBatch, 30);
+            }
+          }
         }
+        loadBatch();
       }
 
       // Setup ScrollTrigger

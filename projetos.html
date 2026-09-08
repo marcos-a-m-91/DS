@@ -27,7 +27,7 @@
   <canvas id="canvas"></canvas>
 
   <!-- NAVIGATION — Sticky glass navbar -->
-  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7 opacity-0 transition-opacity duration-300">
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-5 sm:py-7">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
 
       <!-- Logo -->
@@ -456,25 +456,6 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Navegação Glass Fade In e Scroll
-      const navbar = document.getElementById('navbar');
-      gsap.to(navbar, { opacity: 1, duration: 1, ease: 'power2.out', delay: 0.2 });
-      
-      ScrollTrigger.create({ 
-        start: "top+=50 top", 
-        onEnter: () => navbar.classList.add('scrolled'), 
-        onLeaveBack: () => navbar.classList.remove('scrolled') 
-      });
-
-      // Reveal inicial dos elementos
-      document.querySelectorAll('.reveal').forEach(el => {
-        ScrollTrigger.create({
-          trigger: el, start: "top 88%",
-          onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }),
-          onLeaveBack: () => gsap.to(el, { opacity: 0, y: 32, duration: 0.45 })
-        });
-      });
-
       // Efeito de Parallax nos Cards
       document.querySelectorAll('.project-card').forEach(card => {
         const icon = card.querySelector('i[data-lucide]:not(.w-3, .w-4)'); 
